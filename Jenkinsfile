@@ -34,7 +34,7 @@ pipeline {
                     scp -i ${KEY} -o StrictHostKeyChecking=no myapp.zip ${USERNAME}@${SERVER_IP}:/home/${USERNAME}/
                     ssh -i ${KEY} -o StrictHostKeyChecking=no ${USERNAME}@${SERVER_IP} << EOF
                     ls -lrt
-                    unzip -d myapp.zip -d /home/${USERNAME}/app/
+                    unzip -o /home/${USERNAME}/myapp.zip -d /home/${USERNAME}/app/
                     source /home/${USERNAME}/app/venv/bin/activate
                     cd /home/${USERNAME}/app/
                     pip install -r requirements.txt
