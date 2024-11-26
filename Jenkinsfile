@@ -31,7 +31,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sshkey-ec2user', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
                 sh  ''' 
-                    scp -i ${KEY} myapp.zip ${USERNAME}@${SERVER_IP}:/home/{USERNAME}/
+                    scp -i ${KEY} myapp.zip ${USERNAME}@${SERVER_IP}:/home/${USERNAME}/
                     ssh -i ${KEY} ${USERNAME}@${SERVER_IP} 'ls -lrt'                
                 '''
 
