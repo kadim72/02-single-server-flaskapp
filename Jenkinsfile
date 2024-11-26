@@ -30,12 +30,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sshkey-ec2user', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
-                 
-                 scp -i ${KEY} myapp.zip ${USERNAME}@${SERVER_IP}:/home/{USERNAME}/
-
-                 sh  ''' 
-                    ssh -i ${KEY} ${USERNAME}@${SERVER_IP} 'ls -lrt'
-                
+                sh  ''' 
+                    scp -i ${KEY} myapp.zip ${USERNAME}@${SERVER_IP}:/home/{USERNAME}/
+                    ssh -i ${KEY} ${USERNAME}@${SERVER_IP} 'ls -lrt'                
                 '''
 
                 }
