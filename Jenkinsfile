@@ -31,7 +31,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sshkey-ec2user', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
 
-                 sh  "ssh -i ${KEY} ${USERNAME}@${SERVER_IP} ls -lrt"
+                 sh  "ssh -i ${KEY} ${USERNAME}@${SERVER_IP} 'ls -lrt'"
 
                 }
             }
