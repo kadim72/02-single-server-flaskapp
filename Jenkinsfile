@@ -32,7 +32,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'sshkey-ec2user', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
                 sh  ''' 
                     scp -i ${KEY} -o StrictHostKeyChecking=no myapp.zip ${USERNAME}@${SERVER_IP}:/home/${USERNAME}/
-                    ssh -i ${KEY} -o StrictHostKeyChecking=no ${USERNAME}@${SERVER_IP} <<< EOF
+                    ssh -i ${KEY} -o StrictHostKeyChecking=no ${USERNAME}@${SERVER_IP} << EOF
                     ls -lrt
                     unzip -d myapp.zip -d /home/${USERNAME}/app/
                     source /home/${USERNAME}/app/venv/bin/activate
